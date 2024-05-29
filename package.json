@@ -2,8 +2,20 @@
   "name": "secure-web-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."  
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.34.2"
   }
 }
