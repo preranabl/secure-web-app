@@ -32,7 +32,7 @@ jobs:
 
       - name: SonarQube Scan
         env:
-          SONAR_TOKEN: ${{ secrets.sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f}}
+          SONAR_TOKEN: ${{ secrets.sqp_4fd579f0fe622e22d6c50f1d0841e8722ca84e14}}
         run: |
           sonar-scanner \
             -Dsonar.projectKey=secure-web-app \
