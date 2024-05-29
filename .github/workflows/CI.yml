@@ -30,13 +30,19 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.sqp_4fd579f0fe622e22d6c50f1d0841e8722ca84e14}}
+      - name: Download and install SonarScanner
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+          unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+          export PATH=$PATH:$PWD/sonar-scanner-4.6.2.2472-linux/bin
+
+      - name: Run SonarScanner
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=secure-web-app \
-            -Dsonar.sources=.
+            -Dsonar.projectKey=my_project_key \
+            -Dsonar.sources=./src \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.token=${{ secrets.sqp_4fd579f0fe622e22d6c50f1d0841e8722ca84e14 }}
 
       - name: Snyk Dependency Scan
         uses: snyk/actions/node@master
