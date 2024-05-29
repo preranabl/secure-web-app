@@ -1,39 +1,95 @@
-jobs:
-  build:
-    runs-on: ubuntu-latest
+name: CI/CD Pipeline 
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+on: 
 
-      - name: Install dependencies
-        run: npm install
+  push: 
 
-      - name: Run tests
-        run: npm test
+    branches: 
 
-      - name: Lint code
-        run: npm run lint
+      - main 
 
-      - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f}}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=secure-web-app \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=${{ secrets.sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f}}
-            
-       - name: Snyk Dependency Scan
-        uses: snyk/actions/node@master
-        with:
-          command: test
-        env:
-          SNYK_TOKEN: ${{ secrets.b9dabc23-f9c3-4643-9d58-e87e19639ddd }}
+  pull_request: 
 
+    branches: 
+
+      - main 
+
+  
+
+jobs: 
+
+  build: 
+
+    runs-on: ubuntu-latest 
+
+  
+
+    steps: 
+
+      - name: Checkout code 
+
+        uses: actions/checkout@v2 
+
+  
+
+      - name: Set up Node.js 
+
+        uses: actions/setup-node@v2 
+
+        with: 
+
+          node-version: '14' 
+
+  
+
+      - name: Install dependencies 
+
+        run: npm install 
+
+  
+
+      - name: Run tests 
+
+        run: npm test 
+
+  
+
+      - name: Lint code 
+
+        run: npm run lint 
+
+  
+
+      - name: SonarQube Scan 
+
+        env: 
+
+          SONAR_TOKEN: ${{ secrets. sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f }} 
+
+        run: | 
+
+          sonar-scanner \ 
+
+            -Dsonar.projectKey=secure-web-app \ 
+
+            -Dsonar.sources=. \ 
+
+            -Dsonar.host.url=http://localhost:9000 \ 
+
+            -Dsonar.login=${{ secrets. sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f }} 
+
+  
+
+      - name: Snyk Dependency Scan 
+
+        uses: snyk/actions/node@master 
+
+        with: 
+
+          command: test 
+
+        env: 
+
+          SNYK_TOKEN: ${{ secrets. b9dabc23-f9c3-4643-9d58-e87e19639ddd }} 
