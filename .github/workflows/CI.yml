@@ -39,7 +39,7 @@ jobs:
       - name: Run SonarScanner
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=my_project_key \
+            -Dsonar.projectKey=secure-web-app \
             -Dsonar.sources=./src \
             -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.token=${{ secrets.sqp_4fd579f0fe622e22d6c50f1d0841e8722ca84e14 }}
