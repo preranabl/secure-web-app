@@ -1,0 +1,33 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f
+ }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=secure-web-app \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=${{ secrets.sqp_0ccd0c5b32543221029cbb5c6ea37f347627642f
+ }}
