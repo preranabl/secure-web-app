@@ -33,8 +33,11 @@ jobs:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with:
-          SONAR_TOKEN: ${{ secrets.sqp_b2d39e94e10d56f88eac92a47edfec45f4215cc4 }}
-          SONAR_HOST_URL: https://secure-web-app.sonarqube
+          entryPoint: 'sonar-scanner'
+          args: '-Dsonar.host.url=https://secure-web-app.sonarqube'
+          projectBaseDir: './'
+        env:
+          SONAR_TOKEN: ${{ sqp_b2d39e94e10d56f88eac92a47edfec45f4215cc4 }}
 
       - name: Snyk Dependency Scan
         uses: snyk/actions/node@master
